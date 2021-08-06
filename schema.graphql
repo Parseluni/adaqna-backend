@@ -1,0 +1,35 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type User {
+    user_id: ID!
+    username: String!
+    email: String!
+    location: String!
+    created_at: String!
+}
+
+type UserResult {
+    success: Boolean!
+    errors: [String]
+    user: User
+}
+
+type UsersResult {
+    success: Boolean!
+    errors: [String]
+    users: [User]
+}
+
+type Query {
+    listUsers: UsersResult!
+    getUser(user_id: ID!): UserResult!
+}
+
+type Mutation {
+    createUser(username: String!, location: String!, email: String!, created_at: String): UserResult!
+    updateUser(user_id: ID!, username: String, location: String, email: String): UserResult!
+    deleteUser(user_id: ID!): UserResult!
+}
