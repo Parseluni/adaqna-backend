@@ -28,4 +28,11 @@ def create_app(test_config=None):
     db.init_app(app)
     migrate.init_app(app, db)
 
+    # Make the models available here
+    from app.models import User
+    from app.models import Question
+    from app.models import Answer
+    from app.models import Comment
+
     return app
+
