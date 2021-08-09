@@ -4,20 +4,32 @@ from ariadne import load_schema_from_path, make_executable_schema, \
     graphql_sync, snake_case_fallback_resolvers, ObjectType
 from ariadne.constants import PLAYGROUND_HTML
 from flask import request, jsonify
-from api.queries import listUsers_resolver, getUser_resolver
-from api.mutations import create_user_resolver, update_user_resolver, delete_user_resolver
+from api.queries import listPersons_resolver, getPerson_resolver
+from api.mutations import create_person_resolver, update_person_resolver, delete_person_resolver
+from api.queries import listQuestions_resolver, getQuestion_resolver
+from api.mutations import create_question_resolver, update_question_resolver, delete_question_resolver
+
 
 query = ObjectType("Query")
 mutation = ObjectType("Mutation")
 
-### USER QUERIES ###
-query.set_field("listUsers", listUsers_resolver)
-query.set_field("getUser", getUser_resolver)
+### PERSON QUERIES ###
+query.set_field("listPersons", listPersons_resolver)
+query.set_field("getPerson", getPerson_resolver)
 
-### USER MUTATIONS ###
-mutation.set_field("createUser", create_user_resolver)
-mutation.set_field("updateUser", update_user_resolver)
-mutation.set_field("deleteUser", delete_user_resolver)
+### PERSON MUTATIONS ###
+mutation.set_field("createPerson", create_person_resolver)
+mutation.set_field("updatePerson", update_person_resolver)
+mutation.set_field("deletePerson", delete_person_resolver)
+
+### QUESTION QUERIES ###
+query.set_field("listQuestions", listQuestions_resolver)
+query.set_field("getQuestion", getQuestion_resolver)
+
+### QUESTION MUTATIONS ###
+mutation.set_field("createQuestion", create_question_resolver)
+mutation.set_field("updateQuestion", update_question_resolver)
+mutation.set_field("deleteQuestion", delete_question_resolver)
 
 type_defs = load_schema_from_path("schema.graphql")
 schema = make_executable_schema(
@@ -39,4 +51,6 @@ def graphql_server():
     )
     status_code = 200 if success else 400
     return jsonify(result), status_code
+
+
 

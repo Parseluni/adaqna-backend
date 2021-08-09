@@ -1,13 +1,15 @@
-from .models import User
+from .models import Person, Question
 from ariadne import convert_kwargs_to_snake_case
 
-def listUsers_resolver(obj, info):
+### PERSON QUERIES ###
+
+def listPersons_resolver(obj, info):
     try:
-        users = [user.to_dict() for user in User.query.all()]
-        print(users)
+        persons = [person.to_dict() for person in Person.query.all()]
+        print(persons)
         payload = {
             "success": True,
-            "users": users
+            "persons": persons
         }
     except Exception as error:
         payload = {
@@ -17,17 +19,51 @@ def listUsers_resolver(obj, info):
     return payload
 
 @convert_kwargs_to_snake_case
-def getUser_resolver(obj, info, user_id):
+def getPerson_resolver(obj, info, person_id):
     try:
-        user = User.query.get(user_id)
-        print(user)
+        person = Person.query.get(person_id)
+        print(person)
         payload = {
             "success": True,
-            "user": user.to_dict()
+            "person": person.to_dict()
         }
     except AttributeError:  
         payload = {
             "success": False,
-            "errors": ["Post item matching {user_id} not found"]
+            "errors": ["Post item matching {person_id} not found"]
+        }
+    return payload
+
+
+### QUESTION QUERIES ###
+
+def listQuestions_resolver(obj, info):
+    try:
+        questions = [question.to_dict() for question in Question.query.all()]
+        print(questions)
+        payload = {
+            "success": True,
+            "questions": questions
+        }
+    except Exception as error:
+        payload = {
+            "success": False,
+            "errors": [str(error)]
+        }
+    return payload
+
+@convert_kwargs_to_snake_case
+def getQuestion_resolver(obj, info, question_id):
+    try:
+        question = Question.query.get(question_id)
+        print(question)
+        payload = {
+            "success": True,
+            "question": question.to_dict()
+        }
+    except AttributeError:  
+        payload = {
+            "success": False,
+            "errors": ["Post item matching {question_id} not found"]
         }
     return payload

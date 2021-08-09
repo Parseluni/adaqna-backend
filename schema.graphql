@@ -3,33 +3,79 @@ schema {
     mutation: Mutation
 }
 
-type User {
-    user_id: ID!
+### PERSON TYPES ###
+
+type Person {
+    person_id: ID!
     username: String!
     email: String!
     location: String!
     created_at: String!
 }
 
-type UserResult {
+type PersonResult {
     success: Boolean!
     errors: [String]
-    user: User
+    person: Person
 }
 
-type UsersResult {
+type PersonsResult {
     success: Boolean!
     errors: [String]
-    users: [User]
+    persons: [Person]
 }
+
+### QUESTION TYPES ###
+
+type Question {
+    question_id: ID!
+    body: String!
+    topic: Topic!   ### not sure how to link a drop down menu here
+    created_at: String!
+}
+
+enum Topic {
+    ESSAYS
+    CODE_CHALLENGE
+    TECHNICAL_INTERVIEW
+    FINAL_INTERVIEW
+    APPLICATION_TIMELINE
+    INTERNSHIPS
+    CAREER_PROSPECTS
+    GENERAL
+}
+
+type QuestionResult {
+    success: Boolean!
+    errors: [String]
+    question: Question
+}
+
+type QuestionsResult {
+    success: Boolean!
+    errors: [String]
+    questions: [Question]
+}
+
+### QUERIES AND MUTATIONS TYPES ###
 
 type Query {
-    listUsers: UsersResult!
-    getUser(user_id: ID!): UserResult!
+    # PERSON QUERIES #
+    listPersons: PersonsResult!
+    getPerson(person_id: ID!): PersonResult!
+    # LIST QUERIES #
+    listQuestions: QuestionsResult!
+    getQuestion(question_id: ID!): QuestionResult!
 }
 
 type Mutation {
-    createUser(username: String!, location: String!, email: String!, created_at: String): UserResult!
-    updateUser(user_id: ID!, username: String, location: String, email: String): UserResult!
-    deleteUser(user_id: ID!): UserResult!
+    # Person MUTATIONS #
+    createPerson(username: String!, location: String!, email: String!, created_at: String): PersonResult!
+    updatePerson(person_id: ID!, username: String, location: String, email: String): PersonResult!
+    deletePerson(person_id: ID!): PersonResult!
+    # QUESTION MUTATIONS #
+    createQuestion(body: String!, topic: String!, created_at: String): QuestionResult!
+    updateQuestion(question_id: ID!, body: String!, topic: String): QuestionResult!
+    deleteQuestion(question_id: ID!): QuestionResult!
+
 }

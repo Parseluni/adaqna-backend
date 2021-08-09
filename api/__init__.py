@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate     # companion package to SQLAlchemy
 from dotenv import load_dotenv
 from flask_cors import CORS
+from flask_login import LoginManager
 import os
 
 # Sets up db and migrate, which are conventional variables that give us access to database operations
@@ -29,9 +30,13 @@ else:
 db.init_app(app)
 migrate.init_app(app, db)
 
+### Log in stuff
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+
 # Make the models available here
-from api.models import User
-# from api.models import Question
+from api.models import Person
+from api.models import Question
 # from api.models import Answer
 # from api.models import Comment
 
