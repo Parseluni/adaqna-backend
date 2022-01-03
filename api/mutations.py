@@ -3,6 +3,7 @@ from ariadne import convert_kwargs_to_snake_case
 from api import db
 from api.models import Person, Question
 
+
 ### PERSON MUTATIONS ###
 @convert_kwargs_to_snake_case
 def create_person_resolver(obj, info, username, email, location):
@@ -66,11 +67,11 @@ def delete_person_resolver(obj, info, person_id):
 ### QUESTION MUTATIONS ###
 
 @convert_kwargs_to_snake_case
-def create_question_resolver(obj, info, body, topic):
+def create_question_resolver(obj, info, person, body, topic):
     try:
         today = date.today()
         question = Question(
-            body=body, topic=topic, created_at=today.strftime("%b-%d-%Y")
+            person=Person.person_id, body=body, topic=topic, created_at=today.strftime("%b-%d-%Y")
         )
         db.session.add(question)
         db.session.commit()

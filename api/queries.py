@@ -1,6 +1,7 @@
 from .models import Person, Question
 from ariadne import convert_kwargs_to_snake_case
 
+
 ### PERSON QUERIES ###
 
 def listPersons_resolver(obj, info):
@@ -54,6 +55,22 @@ def listQuestions_resolver(obj, info):
 
 @convert_kwargs_to_snake_case
 def getQuestion_resolver(obj, info, question_id):
+    try:
+        question = Question.query.get(question_id)
+        print(question)
+        payload = {
+            "success": True,
+            "question": question.to_dict()
+        }
+    except AttributeError:  
+        payload = {
+            "success": False,
+            "errors": ["Post item matching {question_id} not found"]
+        }
+    return payload
+
+@convert_kwargs_to_snake_case
+def getQuestionFromPerson_resolver(obj, info, person_id, question_id):
     try:
         question = Question.query.get(question_id)
         print(question)

@@ -11,6 +11,7 @@ type Person {
     email: String!
     location: String!
     created_at: String!
+    questions: [Question]
 }
 
 type PersonResult {
@@ -28,6 +29,7 @@ type PersonsResult {
 ### QUESTION TYPES ###
 
 type Question {
+    person: Person!
     question_id: ID!
     body: String!
     topic: Topic!   ### not sure how to link a drop down menu here
@@ -74,7 +76,7 @@ type Mutation {
     updatePerson(person_id: ID!, username: String, location: String, email: String): PersonResult!
     deletePerson(person_id: ID!): PersonResult!
     # QUESTION MUTATIONS #
-    createQuestion(body: String!, topic: String!, created_at: String): QuestionResult!
+    createQuestion(person: String!, body: String!, topic: String!, created_at: String): QuestionResult!
     updateQuestion(question_id: ID!, body: String!, topic: String): QuestionResult!
     deleteQuestion(question_id: ID!): QuestionResult!
 

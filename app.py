@@ -1,5 +1,4 @@
 from api import app, db
-from api import models
 from ariadne import load_schema_from_path, make_executable_schema, \
     graphql_sync, snake_case_fallback_resolvers, ObjectType
 from ariadne.constants import PLAYGROUND_HTML
@@ -51,6 +50,3 @@ def graphql_server():
     )
     status_code = 200 if success else 400
     return jsonify(result), status_code
-
-
-
