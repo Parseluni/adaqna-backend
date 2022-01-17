@@ -1,0 +1,10 @@
+Applying to Ada Developers Academy is a stressful, opaque process which I thought would be easier to navigate with the support of a community. After receiving my acceptance call from Ada, I created an online space to bridge the gap between prospective students and alumni, a supportive community guiding new applicants through the process. I also created a spreadsheet for applicants to fill with their timeline dates for each step (technical challenge, technical interview and final interview), in order to establish a database for future cohorts and help demystify the process. The group has been steadily growing with each cohort, and I noticed a lot of the same questions coming up again and again. I thought it would be useful to have an online collection of questions and answers for members to ask and reply to, with a potential additional feature allowing users to visualize the previous applicants' data from the spreadsheet. 
+
+Q&Ada Video Intro: https://youtu.be/mYcnFFHjj1g
+
+My capstone project is a dynamic website allowing users to read, filter, post, upvote/downvote and answer questions. Visitors may read and filter questions by topic, while logged in users have access to all features via added options on the left side menu.
+
+The plan was to deepen my Python, JavaScript and React knowledge while integrating some of the tech stack I would be using during my upcoming internship, namely GraphQL and Docker. After realizing my progression with GraphQL would not allow me to finish the project on time, I made a switch to Firebase. This change of direction taught me that critical decisions have to be made for the good of the project, and to remain open to change. I learned to pace myself, take short breaks when being stuck, and ask for help when my allotted time for troubleshooting was up; this helped access new ideas and keep the project on schedule. I learned that I am deeply dedicated to getting things done well, that bringing a project to term is extremely fulfilling, and that I am resilient and resourceful.
+
+Q&Ada Front End:
+https://github.com/Parseluni/adaqna-frontend-firebase
